@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                     } catch (Exception e) {
 
                     }
-                    if (pos > 0 && pos < alTask.size()) {
+                    if (pos >= 0 && pos < alTask.size()) {
                         //remove
                         alTask.remove(pos);
                         //notify the adapter
