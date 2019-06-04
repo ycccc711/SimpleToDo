@@ -12,11 +12,12 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class MainActivity extends AppCompatActivity {
 
     EditText etTask;
-    Button btnAdd, btnClear, btnDelete;
+    Button btnAdd, btnClear, btnDelete ,btnSort;
     ListView lvTask;
     Spinner spnAddRemove;
 
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         btnAdd = findViewById(R.id.buttonAdd);
         btnClear = findViewById(R.id.buttonClear);
         btnDelete = findViewById(R.id.buttonDelete);
+        btnSort = findViewById(R.id.buttonSort);
         lvTask = findViewById(R.id.listViewTask);
         spnAddRemove = findViewById(R.id.spinner);
 
@@ -56,7 +58,18 @@ public class MainActivity extends AppCompatActivity {
                         btnAdd.setEnabled(false);
                         //button delete is enabled
                         btnDelete.setEnabled(true);
+
+                        lvTask.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                alTask.remove(position);
+                                aaTask.notifyDataSetChanged();
+                                Toast.makeText(MainActivity.this, "Removed", Toast.LENGTH_LONG).show();
+                            }
+                        });
                         break;
+
+
                 }
             }
 
@@ -72,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 //get the task user entered in the edit text
                 String task = etTask.getText().toString();
 
-                if (task.length() == 0 || task.matches("\\s*" )) {
+                if (task.length() == 0 || task.matches("\\s*")) {
                     Toast.makeText(MainActivity.this, "Please enter a task", Toast.LENGTH_SHORT).show();
                 } else {
                     //add to arraylist
@@ -135,6 +148,15 @@ public class MainActivity extends AppCompatActivity {
 //                else{
 //                    Toast.makeText(MainActivity.this,"You don't have any task to remove",Toast.LENGTH_LONG).show();
 //                }
+            }
+        });
+
+        btnSort.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                java.util.Collections.sort(alTask);
+                aaTask.notifyDataSetChanged();
+
             }
         });
 

@@ -3,6 +3,7 @@
     <string name="add">ADD</string>
     <string name="clear">CLEAR</string>
     <string name="delete">DELETE</string>
+    <string name="sort">SORT</string>
     <string name="add_1">Type a new task here</string>
     <string name="add_2">Type in the index of the task to be removed</string>
 
