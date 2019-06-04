@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 //get the task user entered in the edit text
                 String task = etTask.getText().toString();
 
-                if (task.length() == 0) {
+                if (task.length() == 0 || task.matches("\\s*" )) {
                     Toast.makeText(MainActivity.this, "Please enter a task", Toast.LENGTH_SHORT).show();
                 } else {
                     //add to arraylist
@@ -125,6 +125,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 clearField();
+                alTask.clear();
+                aaTask.notifyDataSetChanged();
 //                if(etTask.getText() != null || alTask.size() >0){
 //                    etTask.setText("");
 //                    alTask.clear();
